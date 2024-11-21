@@ -102,10 +102,10 @@ export default function BajajChallengeForm() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
+    <div className="bg-gray-900 text-gray-200 p-8 rounded-lg shadow-md w-full max-w-2xl">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="jsonInput" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="jsonInput" className="block text-sm font-medium text-gray-400">
             JSON Input
           </label>
           <textarea
@@ -113,7 +113,7 @@ export default function BajajChallengeForm() {
             value={jsonInput}
             onChange={(e) => setJsonInput(e.target.value)}
             placeholder='{"data": ["A", "1", "B", "2"]}'
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="mt-1 block w-full rounded-md border-gray-700 bg-gray-800 text-gray-200 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
             rows={4}
           />
         </div>
@@ -126,14 +126,14 @@ export default function BajajChallengeForm() {
       </form>
 
       {error && (
-        <div className="mt-4 p-2 bg-red-100 text-red-700 rounded">
+        <div className="mt-4 p-2 bg-red-800 text-red-300 rounded">
           {error}
         </div>
       )}
 
       {showFilters && (
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold">Response Filters</h2>
+          <h2 className="text-xl font-semibold text-gray-100">Response Filters</h2>
           <div className="flex flex-wrap gap-2">
             {(['alphabets', 'numbers', 'highest_lowercase_alphabet'] as FilterOption[]).map((option) => (
               <button
@@ -141,7 +141,7 @@ export default function BajajChallengeForm() {
                 onClick={() => handleFilterChange(option)}
                 className={`px-4 py-2 rounded-md text-sm font-medium ${selectedFilters.includes(option)
                   ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                   }`}
               >
                 {option.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
@@ -153,8 +153,8 @@ export default function BajajChallengeForm() {
 
       {response && (
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold">Filtered Response</h2>
-          <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
+          <h2 className="text-xl font-semibold text-gray-100">Filtered Response</h2>
+          <pre className="bg-gray-800 text-gray-300 p-4 rounded overflow-x-auto">
             {JSON.stringify(getFilteredResponse(), null, 2)}
           </pre>
         </div>
@@ -162,4 +162,3 @@ export default function BajajChallengeForm() {
     </div>
   )
 }
-
